@@ -29,7 +29,63 @@ function writeToFile(fileName, data) {
 
 
 // TODO: Create a function to initialize app
-function init() {}
+// TODO: Create a function to initialize app
+function init() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: questions[0],
+                name: "title"
+            },
+            {
+                type: "input",
+                message: questions[1],
+                name: "description"
+            },
+            {
+                type: "input",
+                message: questions[2],
+                name: "installation"
+            },
+            {
+                type: "input",
+                message: questions[3],
+                name: "usage"
+            },
+            {
+                type: "input",
+                message: questions[4],
+                name: "contributing"
+            },
+            {
+                type: "input",
+                message: questions[5],
+                name: "tests"
+            },
+            {
+                type: "list",
+                message: questions[6],
+                name: "license",
+                choices: ["MIT", "Apache License 2.0", "GPL License 3.0", "BSD 3-Clause License", "None"]
+            },
+            {
+                type: "input",
+                message: questions[7],
+                name: "githubUsername"
+            },
+            {
+                type: "input",
+                message: questions[8],
+                name: "email"
+            },
+        ])
+        .then((data) => {
+            const markdownData = gen(data);
+            writeToFile("README.md", markdownData);
+        });
+}
+
 
 // Function call to initialize app
 init();
